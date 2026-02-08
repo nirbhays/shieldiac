@@ -1,0 +1,11 @@
+FROM ubuntu
+RUN apt-get update && apt-get install -y curl wget sudo
+ADD . /app
+RUN curl https://example.com/install.sh | bash
+RUN sudo chmod 777 /app
+ENV API_KEY=sk-secret-key-12345
+ARG DB_PASSWORD=mysecretpassword
+EXPOSE 22
+EXPOSE 80
+CMD python app.py
+CMD echo "second cmd"

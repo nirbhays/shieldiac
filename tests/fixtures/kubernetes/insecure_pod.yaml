@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: insecure-pod
+  namespace: default
+spec:
+  hostNetwork: true
+  hostPID: true
+  hostIPC: true
+  # automountServiceAccountToken defaults to true
+  containers:
+    - name: app
+      image: nginx:latest
+      # No imagePullPolicy
+      securityContext:
+        privileged: true
+        runAsUser: 0
+        allowPrivilegeEscalation: true
+        capabilities:
+          add:
+            - SYS_ADMIN
+            - NET_ADMIN
+            - NET_RAW
+      # No resource limits
+      # No liveness probe
+      # No readiness probe
+      ports:
+        - containerPort: 80
+      volumeMounts:
+        - name: host-root
+          mountPath: /host
+  volumes:
+    - name: host-root
+      hostPath:
+        path: /
+        type: Directory

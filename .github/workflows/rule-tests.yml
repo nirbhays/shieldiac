@@ -1,0 +1,43 @@
+name: Rule Tests
+
+on:
+  push:
+    paths:
+      - "backend/rules/**"
+      - "tests/test_*_scanner.py"
+      - "tests/fixtures/**"
+  pull_request:
+    paths:
+      - "backend/rules/**"
+
+jobs:
+  test-rules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Install
+        run: pip install -r backend/requirements.txt
+      - name: Test Terraform rules
+        run: python -m pytest tests/test_terraform_scanner.py -v --tb=short
+      - name: Test Kubernetes rules
+        run: python -m pytest tests/test_kubernetes_scanner.py -v --tb=short
+      - name: Test Dockerfile rules
+        run: python -m pytest tests/test_dockerfile_scanner.py -v --tb=short
+      - name: Rule count check
+        run: |
+          python -c "
+          from backend.rules.loader import load_rules
+          from backend.rules.base import ResourceType
+          reg = load_rules()
+          tf = len(reg.by_resource_type(ResourceType.TERRAFORM))
+          k8s = len(reg.by_resource_type(ResourceType.KUBERNETES))
+          docker = len(reg.by_resource_type(ResourceType.DOCKERFILE))
+          print(f'Terraform: {tf}, Kubernetes: {k8s}, Dockerfile: {docker}, Total: {reg.count}')
+          assert tf >= 50, f'Expected 50+ TF rules, got {tf}'
+          assert k8s >= 30, f'Expected 30+ K8s rules, got {k8s}'
+          assert docker >= 20, f'Expected 20+ Docker rules, got {docker}'
+          "
