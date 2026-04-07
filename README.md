@@ -126,8 +126,8 @@ Here is what a ShieldIaC PR comment looks like when it finds security issues in 
   }
 
 ===================================================================
-  View full report: https://app.shieldiac.dev/scans/shld-a8f3c901
-  PDF compliance report: https://app.shieldiac.dev/reports/shld-a8f3c901.pdf
+  View full report: https://github.com/nirbhays/shieldiac
+  PDF compliance report: https://github.com/nirbhays/shieldiac
 ===================================================================
 ```
 
