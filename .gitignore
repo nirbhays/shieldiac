@@ -52,3 +52,21 @@ docker-compose.override.yml
 
 # Logs
 *.log
+# Environment & secrets
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Certificates & keys
+*.pem
+*.key
+*.p12
+*.pfx
+*.cert
+id_rsa
+id_ed25519
+
+# Secrets
+secrets.yaml
+secrets.yml
