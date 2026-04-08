@@ -560,6 +560,19 @@ npm run dev
 
 ---
 
+## Connect & Follow
+
+If you find this project useful, consider:
+
+- ⭐ **Starring** this repo to help others discover it
+- 🐛 **Opening issues** for bugs or feature requests
+- 🤝 **Contributing** — see [CONTRIBUTING.md](CONTRIBUTING.md)
+- 📝 [Read the blog post](https://medium.com/@nirbhaysingh1/how-i-built-an-ai-powered-iac-security-scanner-from-scratch-100-rules-9-compliance-frameworks-ae4cbf114f2a)
+- 💼 **LinkedIn**: [Nirbhay Singh](https://www.linkedin.com/in/nirbhaysingh1/)
+- 🐙 **GitHub**: [@nirbhays](https://github.com/nirbhays)
+
+Built with ❤️ by [Nirbhay Singh](https://cloudtoai.in) — Cloud & AI Architect
+
 ## License
 
 MIT License. See [LICENSE](LICENSE) for details.
